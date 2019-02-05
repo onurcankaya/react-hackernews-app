@@ -5,7 +5,7 @@ class App extends React.PureComponent {
     return (
       <div className="App">
         <header className="App-header">
-          <p>hello world</p>
+          <p>hello redux</p>
         </header>
       </div>
     )
