@@ -1,12 +1,15 @@
 import * as React from 'react'
+import { BrowserRouter } from 'react-router-dom'
+
+import Navigation from '../routes'
 
 class App extends React.PureComponent {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>hello redux</p>
-        </header>
+      <div>
+        <BrowserRouter>
+          <Navigation />
+        </BrowserRouter>
       </div>
     )
   }
