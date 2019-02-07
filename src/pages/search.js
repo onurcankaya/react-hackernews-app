@@ -7,30 +7,37 @@ import * as selectors from '../store/selectors'
 class Search extends React.PureComponent {
   onSearchSubmit = (e) => {
     e.preventDefault()
-    console.log(this.props.searchText)
+    const { query } = this.props
+    this.props.dispatch(actions.getSearchResults({ query }))
   }
 
   onSearchTextChange = (e) => {
-    const text = e.target.value
-    this.props.dispatch(actions.setSearchInput({ text }))
+    const query = e.target.value
+    this.props.dispatch(actions.setSearchQuery({ query }))
   }
 
   render() {
-    console.log(this.props.searchText)
+    const { results } = this.props
+    console.log(results)
+    if (!results) return null
 
     return (
       <div>
         <form onSubmit={this.onSearchSubmit}>
           <input type="text" onChange={this.onSearchTextChange} />
-          <button>Search</button>
+          <button>{`Search`}</button>
         </form>
+        {this.props.results.map((result, index) => (
+          <div key={index}>{result.title}</div>
+        ))}
       </div>
     )
   }
 }
 
 const mapStateToProps = (state) => ({
-  searchText: selectors.getSearchInput(state),
+  query: selectors.getSearchQuery(state),
+  results: selectors.getSearchResults(state),
 })
 
 export default connect(mapStateToProps)(Search)
