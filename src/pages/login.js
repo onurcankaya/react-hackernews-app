@@ -8,7 +8,6 @@ class Login extends React.PureComponent {
   render() {
     return (
       <div>
-        Login Page
         <button onClick={this.onLoginClick}>{`Login`}</button>
       </div>
     )
